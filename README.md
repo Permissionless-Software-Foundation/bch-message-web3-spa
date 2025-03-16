@@ -1,15 +1,13 @@
-# bch-wallet-web3-spa
+# bch-message-web3-spa
 
-This is a web-based single page app (SPA) written in React. It provides non-custodial wallet features for the Bitcoin Cash blockchain, including support for SLP tokens and NFTs.
+This is a web-based single page app (SPA) written in React. It is forked from [bch-wallet-web3-spa](https://github.com/Permissionless-Software-Foundation/bch-wallet-web3-spa), which provides non-custodial wallet features for the Bitcoin Cash blockchain, including support for SLP tokens and NFTs.
 
-The code repository is the successor to [bch-wallet-web-android](https://github.com/Permissionless-Software-Foundation/bch-wallet-web3-android). It is forked from [react-bootstrap-web3-spa](https://github.com/Permissionless-Software-Foundation/react-bootstrap-web3-spa), and any updates to that upstream repository are pulled into this repository. The individual wallet components from bch-wallet-web-android have been audited, refactored, and ported to this repository. It a complete rewrite of the original codebase.
-
-This code repository is intended to be a boilerplate for creating creative BCH-based web apps. It is built on top of the [Cash Stack](https://cashstack.info) web3 architecture, which provides a censorship-resistant back-end for accessing the Bitcoin Cash blockchain.
+This fork has been customized to provide a simple interface for sending and receiving end-to-end encrypted (**E2EE**) messages on the Bitcoin Cash blockchain. It operates very similar to web-based email. But encrypted messages are stored on a [Nostr](https://nostr.com/) relay, the messages are encrypted with the private key of a BCH wallet, and an alert signal is sent to the recipients BCH address using a 'dust' transaction.
 
 ## Installation
 ```bash
-git clone https://github.com/Permissionless-Software-Foundation/bch-wallet-web3-spa
-cd bch-wallet-web3-spa
+git clone https://github.com/Permissionless-Software-Foundation/bch-message-web3-spa
+cd bch-message-web3-spa
 npm install
 npm start
 npm run build

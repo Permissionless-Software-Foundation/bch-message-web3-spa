@@ -1,5 +1,5 @@
 {
-  "name": "bch-wallet-web3-spa",
+  "name": "bch-message-web3-spa",
   "version": "1.0.0",
   "dependencies": {
     "@chris.troutner/react-jdenticon": "1.0.1",
