@@ -4,6 +4,8 @@ This is a web-based single page app (SPA) written in React. It is forked from [b
 
 This fork has been customized to provide a simple interface for sending and receiving end-to-end encrypted (**E2EE**) messages on the Bitcoin Cash blockchain. It operates very similar to web-based email. But encrypted messages are stored on a [Nostr](https://nostr.com/) relay, the messages are encrypted with the private key of a BCH wallet, and an alert signal is sent to the recipients BCH address using a 'dust' transaction.
 
+This code repository is the web-based user interface. There is a command-line interface (CLI) that can be used as well. The code for that is in the [psf-msg-wallet](https://github.com/Permissionless-Software-Foundation/psf-msg-wallet) repository.
+
 ## Installation
 ```bash
 git clone https://github.com/Permissionless-Software-Foundation/bch-message-web3-spa
