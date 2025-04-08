@@ -20,6 +20,7 @@ import SelectServerButton from './servers/select-server-button'
 import BchSend from './bch-send'
 import SlpTokens from './slp-tokens'
 import MessageSend from './message-send'
+import MessageRead from './message-read'
 
 function AppBody (props) {
   // Dependency injection through props
@@ -30,6 +31,7 @@ function AppBody (props) {
       <Routes>
         <Route path='/' element={<BchSend appData={appData} />} />
         <Route path='/message' element={<MessageSend appData={appData} />} />
+        <Route path='/message-read' element={<MessageRead appData={appData} />} />
         <Route path='/balance' element={<GetBalance wallet={appData.wallet} />} />
         <Route path='/bch' element={<BchSend appData={appData} />} />
         <Route path='/wallet' element={<Wallet appData={appData} />} />

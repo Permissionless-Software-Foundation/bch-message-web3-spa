@@ -44,7 +44,7 @@ function MessageSend (props) {
       // upload the message to nostr
       setProgressStep('Uploading to Nostr...')
       const nostrBrowser = new NostrBrowser({ bchWallet: appData.wallet })
-      const { eventId } = await nostrBrowser.testNostrUpload({ encryptedStr })
+      const { eventId } = await nostrBrowser.buildMessage({ encryptedStr })
       // send the message signal
       setProgressStep('Sending message signal...')
       const signal = await nostrBrowser.sendMsgSignal({

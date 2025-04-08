@@ -29,13 +29,13 @@ class NostrBrowser {
     })
   }
 
-  async testNostrUpload (inObj = {}) {
+  // Send Message
+  async buildMessage (inObj = {}) {
     try {
-      console.log('testNostrUpload() executing.')
       // console.log('this.bchWallet: ', this.bchWallet)
 
       const { encryptedStr } = inObj
-      console.log('encryptedStr: ', encryptedStr)
+      // console.log('encryptedStr: ', encryptedStr)
 
       const wif = this.bchWallet.walletInfo.privateKey
       // const { privKeyBuf, nostrPubKey } =
@@ -102,6 +102,37 @@ class NostrBrowser {
     const { txid } = await this.bchNostr.signal.sendMsgSignal(sendObj)
 
     return { txid }
+  }
+
+  // Get address messages
+  async checkMessages (limit = 0) {
+    const checkObj = {
+      wallet: this.bchWallet,
+      addr: this.bchWallet.walletInfo.cashAddress,
+      limit
+    }
+
+    const msgs = await this.bchNostr.signal.checkMsgs(checkObj)
+    console.log('msgs: ', msgs)
+
+    return msgs
+  }
+
+  // Read a message from a transaction id
+  async msgRead (txid) {
+    try {
+      // Retrieve the encrypted message from the Nostr relay.
+      const readObj = {
+        txid,
+        wallet: this.bchWallet
+      }
+      const result = await this.bchNostr.read.getNostrMsgFromTxid(readObj)
+      console.log('result: ', result)
+      return result
+    } catch (error) {
+      console.error('Error in msgRead()')
+      throw error
+    }
   }
 }
 
