@@ -55,10 +55,25 @@ function NavMenu (props) {
             </NavLink>
 
             <NavLink
+              className={currentPath === '/message' ? 'nav-link-active' : 'nav-link-inactive'}
+              to='/message'
+              onClick={handleClickEvent}
+            >
+              Send Message
+            </NavLink>
+
+            <NavLink
+              className={currentPath === '/message-read' ? 'nav-link-active' : 'nav-link-inactive'}
+              to='/message-read'
+              onClick={handleClickEvent}
+            >
+              Read Messages
+            </NavLink>
+
+            <NavLink
               className={currentPath === '/wallet' ? 'nav-link-active' : 'nav-link-inactive'}
               to='/wallet'
               onClick={handleClickEvent}
-
             >
               Wallet
             </NavLink>
