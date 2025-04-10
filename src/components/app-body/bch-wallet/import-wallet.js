@@ -77,7 +77,7 @@ const WalletImport = (props) => {
                 <Container>
                   <Row>
                     <Col xs={12} className='text-break' style={{ textAlign: 'center' }}>
-                      <Form>
+                      <Form onSubmit={(e) => e.preventDefault()}>
                         <Form.Group className='mb-3' controlId='formImportWallet' style={{ display: 'flex', alignItems: 'center' }}>
                           <Form.Control
                             style={{ margin: '1rem' }}
