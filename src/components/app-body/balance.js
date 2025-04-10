@@ -14,7 +14,8 @@ function GetBalance (props) {
   const [textInput, setTextInput] = useState('')
 
   // Button click handler
-  const handleGetBalance = async (event) => {
+  const handleGetBalance = async (e) => {
+    e.preventDefault()
     try {
       // Exit on invalid input
       if (!textInput) return
@@ -43,7 +44,7 @@ function GetBalance (props) {
       <Container>
         <Row>
           <Col className='text-break' style={{ textAlign: 'center' }}>
-            <Form>
+            <Form onSubmit={handleGetBalance}>
               <Form.Group className='mb-3' controlId='formBasicEmail'>
                 <Form.Label>Enter any BCH address to query its balance on the blockchain.</Form.Label>
                 <Form.Control type='text' placeholder='bitcoincash:qqlrzp23w08434twmvr4fxw672whkjy0py26r63g3d' onChange={e => setTextInput(e.target.value)} />

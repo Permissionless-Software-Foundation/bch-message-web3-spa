@@ -259,7 +259,7 @@ function SendCard (props) {
 
             <Row>
               <Col xs={12} style={{ textAlign: 'center' }}>
-                <Form>
+                <Form onSubmit={(e) => e.preventDefault()}>
                   <Form.Group controlId='formBasicEmail' style={{ display: 'flex', alignItems: 'center' }}>
                     <Form.Control
                       style={{ marginRight: '1rem' }}
@@ -289,7 +289,7 @@ function SendCard (props) {
 
             <Row>
               <Col xs={12}>
-                <Form style={{ paddingBottom: '10px' }}>
+                <Form style={{ paddingBottom: '10px' }} onSubmit={(e) => { e.preventDefault(); handleSendBch({ sendCardData, appData }) }}>
                   <Form.Group controlId='formBasicEmail' style={{ textAlign: 'center' }}>
                     <Form.Control
                       type='number'

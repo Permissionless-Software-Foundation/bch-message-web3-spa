@@ -31,7 +31,7 @@ function NavMenu (props) {
       <Navbar expanded={expanded} onToggle={setExpanded} expand='xxxl' bg='dark' variant='dark' style={{ paddingRight: '20px' }}>
         <Navbar.Brand href='#home' style={{ paddingLeft: '20px' }}>
           <Image src={Logo} thumbnail width='50' />{' '}
-          PSF Web3 Demo
+          SLP Wallet
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
@@ -84,6 +84,27 @@ function NavMenu (props) {
               onClick={handleClickEvent}
             >
               Check Balance
+            </NavLink>
+            <NavLink
+              className={(currentPath === '/sweep') ? 'nav-link-active' : 'nav-link-inactive'}
+              to='/sweep'
+              onClick={handleClickEvent}
+            >
+              Sweep
+            </NavLink>
+            <NavLink
+              className={(currentPath === '/sign') ? 'nav-link-active' : 'nav-link-inactive'}
+              to='/sign'
+              onClick={handleClickEvent}
+            >
+              Sign
+            </NavLink>
+            <NavLink
+              className={currentPath === '/configuration' ? 'nav-link-active' : 'nav-link-inactive'}
+              to='/configuration'
+              onClick={handleClickEvent}
+            >
+              Configuration
             </NavLink>
           </Nav>
         </Navbar.Collapse>

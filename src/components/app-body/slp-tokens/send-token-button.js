@@ -51,7 +51,8 @@ function SendTokenButton ({ token, appData, refreshTokens }) {
 
   // Click handler that fires when the user clicks the 'Send' button.
 
-  const handleSendTokens = async () => {
+  const handleSendTokens = async (e) => {
+    e.preventDefault()
     try {
       setStatusMsg('Preparing to send tokens...')
       setHideSpinner(false)
@@ -131,7 +132,7 @@ function SendTokenButton ({ token, appData, refreshTokens }) {
 
             <Row>
               <Col xs={10}>
-                <Form>
+                <Form onSubmit={(e) => e.preventDefault()}>
                   <Form.Group controlId='formBasicEmail' style={{ textAlign: 'center' }}>
                     <Form.Control
                       type='text'
@@ -161,7 +162,7 @@ function SendTokenButton ({ token, appData, refreshTokens }) {
 
             <Row>
               <Col xs={10}>
-                <Form style={{ paddingBottom: '10px' }}>
+                <Form style={{ paddingBottom: '10px' }} onSubmit={handleSendTokens}>
                   <Form.Group controlId='formBasicEmail' style={{ textAlign: 'center' }}>
                     <Form.Control
                       type='text'
