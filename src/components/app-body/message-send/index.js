@@ -60,30 +60,42 @@ function MessageSend (props) {
       // Keep modal open for a moment to show success
       setIsLoading(false)
     } catch (error) {
-      setProgressStep(<span style={{ color: 'red' }}>'Error: ' + error.message</span>)
+      setProgressStep(<span style={{ color: 'red' }}>Error: {error.message}</span>)
       console.error('Error sending message:', error)
       setIsLoading(false)
     }
   }
 
+  // Look up the reciever's public key from the blockchain, use it to encrypt
+  // the message, and return the encrypted message.
   const encryptMessage = async (formData) => {
-    const { message } = formData
-    let msgtToSend = message
+    try {
+      const { message } = formData
+      let msgtToSend = message
 
-    msgtToSend = JSON.stringify({ message })
+      msgtToSend = JSON.stringify({ message })
 
-    // Instantiate the encryptLib with the bchjs instance from the appData
-    const encryptLib = new EncryptLib({ bchjs: appData.wallet.bchjs })
-    // Get the public key for the given address
-    const pubKey = await appData.wallet.getPubKey(formData.address)
-    // Convert the message to a buffer and then to a hex string
-    const buff = Buffer.from(msgtToSend)
-    const hex = buff.toString('hex')
+      // Instantiate the encryptLib with the bchjs instance from the appData
+      const encryptLib = new EncryptLib({ bchjs: appData.wallet.bchjs })
+      // Get the public key for the given address
+      const pubKey = await appData.wallet.getPubKey(formData.address)
+      // Convert the message to a buffer and then to a hex string
+      const buff = Buffer.from(msgtToSend)
+      const hex = buff.toString('hex')
 
-    // Encrypt the message using the public key
-    const encryptedMessage = await encryptLib.encryption.encryptFile(pubKey, hex)
+      // Encrypt the message using the public key
+      const encryptedMessage = await encryptLib.encryption.encryptFile(pubKey, hex)
 
-    return encryptedMessage
+      return encryptedMessage
+    } catch (err) {
+      console.error('Error encrypting message:', err)
+      throw new Error(
+        `Could not find public key on the blockchain for address ${formData.address}.
+        An address must make at least 1 transaction to be able to lookup their public key for encryption.
+        If you think this is a mistake, try again.
+        `
+      )
+    }
   }
 
   return (
@@ -133,6 +145,8 @@ function MessageSend (props) {
           </Button>
         </div>
       </Form>
+      <br />
+      <br />
 
       <Modal show={showModal} centered backdrop='static'>
         <Modal.Header closeButton onHide={() => setShowModal(false)}>
