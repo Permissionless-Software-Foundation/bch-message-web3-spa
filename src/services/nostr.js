@@ -90,18 +90,32 @@ class NostrBrowser {
 
   // Generate and broadcast a PS001 message signal.
   async sendMsgSignal (inObj) {
-    const { addr, subject, eventId } = inObj
+    try {
+      const { addr, subject, eventId } = inObj
 
-    // Create and broadcast a message signal on the BCH blockchain.
-    const sendObj = {
-      wallet: this.bchWallet,
-      addr,
-      subject,
-      eventId
+      // Create and broadcast a message signal on the BCH blockchain.
+      const sendObj = {
+        wallet: this.bchWallet,
+        addr,
+        subject,
+        eventId
+      }
+      const { txid } = await this.bchNostr.signal.sendMsgSignal(sendObj)
+
+      return { txid }
+    } catch (err) {
+      console.error('Error in services/nostr.js/sendMsgSignal(): ', err.message)
+
+      if (err.message.includes('BCH UTXO list is empty')) {
+        throw new Error(`
+          The encrypted message was sent, but your wallet has no BCH to send a signal transaction.
+          The user will not know how to access your message. Add some BCH to your wallet and try again.
+          `
+        )
+      }
+
+      throw err
     }
-    const { txid } = await this.bchNostr.signal.sendMsgSignal(sendObj)
-
-    return { txid }
   }
 
   // Get address messages
